@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <title>S+E</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Kurale&display=swap" rel="stylesheet">
+<style>
+    h2{
+        color: #c2446e;
+        font-size: 30px;
+    }
+    body{
+        font-family: 'coiny';
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #fff0f4, #fdd5e0);
+        text-align: center;
+        align-items: center;
+    }
+    button{
+        font-family: 'Cause';
+        font-weight: 500;
+        background: #ffbdd3;
+        color: black;
+        font-size: 20px;
+        padding: 15px;
+        border-radius: 200px;
+    }
+</style>
+</head>
+<body>
+<h2>Eine geheime Nachricht von mir an dich...</h2>
+<button id="btn" onclick="Abspielen()">ansehen</button>
+<p id="text"></p>
+<script>
+const text = "Liebe Emily, ich liebe dich so sehr! Du bist nicht nur unglaublich schön, sondern auch noch so lieb zu mir. Ich habe dich definitiv nicht verdient. Ich kann mir garnicht vorstellen, dass ein ander Mensch auch so verliebt ist wie ich. Wie sehr ich dich liebe kann ich nicht beschreiben. Ich will noch viel mit dir erleben und dir zeigen, wie sehr ich dich liebe. Du bist der wichtigste Mensch für mich und ich habe so eine Angst, dich zu verlieren. Deswegen musst du mir immer sagen, was du nicht gut an mir findest. Я тебя люблю ♥️";
+let i = 0;
+let start = false;
+
+function Abspielen(){
+    document.getElementById("btn").style.display = "none";
+    start = true;
+    Text();
+}
+function Text(){
+    if(!start) return;
+        if (i < text.length) {
+            document.getElementById("text").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(Text, 100);
+        }
+}
+</script>
+</body>
+</html>

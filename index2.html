@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<head>
+    <title>S+E</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Kurale&display=swap" rel="stylesheet">
+<style>
+    h1{
+        color: #c2446e;
+        font-size: 40px;
+    }
+    body{
+        font-family: 'coiny';
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #fff0f4, #fdd5e0);
+        text-align: center;
+        align-items: center;
+    }
+    button{
+        font-family: 'Cause';
+        font-weight: 500;
+        background: #ffbdd3;
+        color: black;
+        font-size: 20px;
+        padding: 15px;
+        border-radius: 200px;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+    #btn1,#btn2,#btn3,#btn4,#btn5{
+        position: relative;
+        display: none;
+    }
+    .container2{
+        display: flex;
+    }
+    #btn1{
+        top: 200px;
+        left: 200px;
+    }
+    #btn2{
+        top: 120px;
+        left: 40px;
+    }
+    #btn3{
+        top: 400px;
+        left: 90px;
+    }
+    #btn4{
+        top: 300px;
+        left: 300px;
+    }
+    #btn5{
+        top: 250px;
+        left: 140px;
+        font-size: 40px;
+    }
+    #text{
+        font-size: 20px;
+    }
+    #text2{
+        display: none;
+        font-size: 20px;
+    }
+    .slidecontainer{
+        width: 100%;
+    }
+    .slider{
+        -webkit-appearance: none;
+        appearance: none;
+        width: 80%;
+        height: 50px;
+        background: #ffcddd;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        background: linear-gradient(to right, #ff8097 0%, #ff8097 50%, #ffcddd 50%, #ffcddd 100%);
+    }
+    .slider:hover{
+        opacity: 1;
+    }
+    .slider::-webkit-slider-thumb{
+        -webkit-appearance: none; 
+        appearance: none;
+        width: 50px;
+        height: 50px;
+        border: none;
+        background: url('Herz.png');
+        background-size: cover;
+        cursor: pointer;
+    }
+    #text3{
+        display: none;
+        font-size: 20px;
+    }
+    #text3Input{
+        width: 50%;
+        padding: 14px;
+        font-size: 20px;
+        background: #fdd5e0;
+        color: black;
+    }
+</style>
+</head>
+<body>
+<h1>Hast du mich lieb?</h1>
+<div class="container">
+    <button id="NeinButton">Nein</button>
+    <button id="JaButton" onclick="newSpawn()">Ja</button>
+</div>
+<br>
+<div id="text"></div>
+<div class="container2">
+    <button id="btn1" onClick="Btn1()">Ja</button>
+    <button id="btn2" onClick="Btn2()">Jap</button>
+    <button id="btn3" onClick="Btn3()">Natürlich</button>
+    <button id="btn4" onClick="Btn4()">ja</button>
+    <button id="btn5" onClick="Btn5()">JA</button>
+</div>
+<div id="text2">
+    Und wie sehr habe ich dich lieb?
+    <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    </div>
+    <div id="sliderOutput">mittel</div>
+</div>
+<div id="text3">
+    <br>
+    <br>
+    Und wann will ich dich sehen und mit dir sein?
+    <br>
+    <input type="text" id="text3Input">
+    <button onclick="CheckText3Input()">➜</button>
+</div>
+<script>
+let textValue = "";
+let finish = 25;
+
+function newSpawn(){
+    if(textValue.length <= finish){
+        textValue = textValue + 1;
+        document.getElementById("JaButton").textContent = "Ja" + "!".repeat(textValue.length);
+    } else{
+        document.getElementById("JaButton").style.display = "none";
+        document.getElementById("NeinButton").style.display = "none";
+        document.getElementById("text").innerText = "Wirklich?";
+        document.getElementById("btn1").style.display = "block";
+    }
+}
+function Btn1(){
+    document.getElementById("btn1").style.display = "none";
+    document.getElementById("btn2").style.display = "block";
+}
+function Btn2(){
+    document.getElementById("btn2").style.display = "none";
+    document.getElementById("btn3").style.display = "block";
+}
+function Btn3(){
+    document.getElementById("btn3").style.display = "none";
+    document.getElementById("btn4").style.display = "block";
+}
+function Btn4(){
+    document.getElementById("btn4").style.display = "none";
+    document.getElementById("btn5").style.display = "block";
+}
+function Btn5(){
+    document.getElementById("btn5").style.display = "none";
+    document.getElementById("text").style.display = "none";
+    document.getElementById("text2").style.display = "block";
+}
+
+const slider = document.querySelector(".slider");
+let range = document.getElementById("myRange");
+let output = document.getElementById("sliderOutput");
+
+output.innerText = "bisschen";
+range.oninput = function(){
+    output.innerHTML = this.value;
+    if(range.value <= 15){
+        output.innerText = "garnicht";
+    }
+    if(range.value <= 35 && range.value > 15){
+        output.innerText = "nicht so sehr";
+    }
+    if(range.value <= 60 && range.value > 35){
+        output.innerText = "bisschen";
+    }
+    if(range.value <= 85 && range.value > 60){
+        output.innerText = "sehr lieb";
+    }
+    if(range.value <= 98 && range.value > 85){
+        output.innerText = "sehr sehr lieb";
+    }
+    if(range.value > 98){
+        output.innerText = "unendlich lieb";
+        document.getElementById("text3").style.display = "block";
+    } else{
+        document.getElementById("text3").style.display = "none";
+    }
+}
+slider.addEventListener("input", function () {
+    let value = this.value;
+
+    this.style.background = `linear-gradient(
+        to right,
+        #ff8097 0%,
+        #ff8097 ${value}%,
+        #ffcddd ${value}%,
+        #ffcddd 100%
+    )`;
+});
+function CheckText3Input(){
+    let input = document.getElementById("text3Input");
+    if(input.value === "immer" || input.value === "Immer"){
+        alert("Richtig");
+        window.open("index3.html");
+    }
+}
+</script>
+</body>
+</html>

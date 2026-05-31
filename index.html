@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <title>S+E</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Kurale&display=swap" rel="stylesheet">
+<style>
+    h1{
+        color: #c2446e;
+        font-size: 40px;
+    }
+    body{
+        font-family: 'coiny';
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #fff0f4, #fdd5e0);
+        text-align: center;
+        align-items: center;
+    }
+    .keypad{
+        display: grid;
+        grid-template-columns: repeat(3, 80px);
+        gap: 10px;
+        justify-content: center;
+    }
+    button{
+        font-family: 'Cause';
+        font-weight: 500;
+        background: #ffbdd3;
+        color: black;
+        font-size: 20px;
+        padding: 15px;
+        border-radius: 200px;
+    }
+    .pin-display{
+        font-size: 40px;
+    }
+</style>
+</head>
+<body>
+    <h1>Passwort</h1>
+        <div class="pin-display" id="display">○○○○</div>
+        <div class="keypad">
+            <button onclick="press(1)">1</button>
+            <button onclick="press(2)">2</button>
+            <button onclick="press(3)">3</button>
+            <button onclick="press(4)">4</button>
+            <button onclick="press(5)">5</button>
+            <button onclick="press(6)">6</button>
+            <button onclick="press(7)">7</button>
+            <button onclick="press(8)">8</button>
+            <button onclick="press(9)">9</button>
+            <button onclick="clearPin()">←</button>
+            <button onclick="press(0)">0</button>
+        </div>
+<script>
+let pin = "";
+
+function press(number){
+    if(pin.length < 4){
+        pin = pin + number;
+        updateDisplay();
+    }
+    if(pin.length === 4){
+        checkPin();
+    }
+}
+function clearPin(){
+    pin = pin.slice(0, -1);
+    updateDisplay();
+}
+function updateDisplay(){
+    document.getElementById("display").textContent = "●".repeat(pin.length) + "○".repeat(4 - pin.length);
+}
+function checkPin(){
+    if(pin === "2911"){
+        alert("Richtig");
+        window.open("index2.html");
+    } else{
+        pin = "";
+        alert("Falsch");
+        updateDisplay();
+    }
+}
+</script>
+</body>
+</html>
